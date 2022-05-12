@@ -523,6 +523,9 @@ export abstract class ErrorCategory extends StatusCategory {
     error: boolean;
 }
 
+// @beta
+export type ExtractLiterals<T, U extends T> = Extract<T, U>;
+
 // @public
 export enum GeoServiceStatus {
     // (undocumented)
