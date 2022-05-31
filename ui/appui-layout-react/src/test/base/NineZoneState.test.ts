@@ -504,10 +504,10 @@ describe("NineZoneStateReducer", () => {
           type: "WIDGET_DRAG_END",
           floatingWidgetId: "fw1",
           target: {
-            type: "widget",
+            type: "section",
             newWidgetId: "newId",
             side: "left",
-            widgetIndex: 1,
+            sectionIndex: 1,
           },
         });
         newState.panels.left.widgets.length.should.eq(3);
@@ -1011,10 +1011,10 @@ describe("NineZoneStateReducer", () => {
           type: "WIDGET_TAB_DRAG_END",
           id: "dt",
           target: {
-            type: "widget",
+            type: "section",
             newWidgetId: "leftEnd",
             side: "left",
-            widgetIndex: 1,
+            sectionIndex: 1,
           },
         });
         newState.panels.left.widgets.length.should.eq(2);
@@ -1034,10 +1034,10 @@ describe("NineZoneStateReducer", () => {
           type: "WIDGET_TAB_DRAG_END",
           id: "dt",
           target: {
-            type: "widget",
+            type: "section",
             newWidgetId: "",
             side: "left",
-            widgetIndex: 1,
+            sectionIndex: 1,
           },
         });
         newState.panels.left.widgets.length.should.eq(2);
@@ -1057,10 +1057,10 @@ describe("NineZoneStateReducer", () => {
           type: "WIDGET_TAB_DRAG_END",
           id: "dt",
           target: {
-            type: "widget",
+            type: "section",
             newWidgetId: "",
             side: "left",
-            widgetIndex: 1,
+            sectionIndex: 1,
           },
         });
         newState.panels.left.widgets.length.should.eq(1);
@@ -1079,10 +1079,10 @@ describe("NineZoneStateReducer", () => {
           type: "WIDGET_TAB_DRAG_END",
           id: "dt",
           target: {
-            type: "widget",
+            type: "section",
             newWidgetId: "",
             side: "left",
-            widgetIndex: 0,
+            sectionIndex: 0,
           },
         });
         newState.panels.left.widgets.length.should.eq(1);
@@ -1101,10 +1101,10 @@ describe("NineZoneStateReducer", () => {
           type: "WIDGET_TAB_DRAG_END",
           id: "dt",
           target: {
-            type: "widget",
+            type: "section",
             newWidgetId: "",
             side: "left",
-            widgetIndex: 0,
+            sectionIndex: 0,
           },
         });
         newState.panels.left.widgets.length.should.eq(2);
