@@ -1139,7 +1139,8 @@ function isTabTargetState(state: DropTargetState): state is TabTargetState {
   return state.type === "tab";
 }
 
-function isPanelTargetState(state: DropTargetState): state is PanelTargetState {
+/** @internal */
+export function isPanelTargetState(state: DropTargetState): state is PanelTargetState {
   return state.type === "panel";
 }
 
