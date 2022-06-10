@@ -2,7 +2,7 @@ import os, subprocess, sys
 
 def getSHAFromTag(tag):
   cmd = ["git", "rev-list", "-n", "1", tag]
-  proc = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
+  proc = subprocess.Popen(" ".join(cmd), stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
   sha = proc.communicate()[0].decode("utf-8").strip()
   if len(sha) == 0:
     print("Could not find commit for tag '{0}'".format(tag))
@@ -12,7 +12,7 @@ def getSHAFromTag(tag):
 
 def getCommitMessage(sha):
   cmd = ["git", "log", "-1", "--format=%s", sha]
-  proc = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
+  proc = subprocess.Popen(" ".join(cmd), stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
   commitMessage = proc.communicate()[0].decode("utf-8").strip()
   if len(commitMessage) == 0:
     print("Could not find commit " + sha)
@@ -37,7 +37,7 @@ def createRelease(tag):
   # get latest tag for previous major/minor version
   if releaseType == "Patch":
     cmd = ["git", "describe", "--abbrev=0", "--tags", tag + "~1"]
-    proc = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
+    proc = subprocess.Popen(" ".join(cmd), stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
     previousTag = proc.communicate()[0].decode("utf-8").strip()
     if (len(previousTag) == 0):
       print("Could not find previous tag for " + tag)
@@ -47,7 +47,7 @@ def createRelease(tag):
     else:
       glob = "refs/tags/release/{0}.*".format(parsedVer[0] - 1)
     cmd = ["git", "for-each-ref", "--sort=-taggerdate", "--count=1", "--format=%(refname:short)", glob]
-    proc = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
+    proc = subprocess.Popen(" ".join(cmd), stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
     previousTag = proc.communicate()[0].decode("utf-8").strip()
   if (len(previousTag) == 0):
     print("Could not find previous tag for " + tag)
@@ -61,7 +61,7 @@ def createRelease(tag):
 
   # Get all commit SHAs between tags
   cmd = ["git", "rev-list", "--ancestry-path", previousSHA + ".." + currentSHA]
-  proc = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
+  proc = subprocess.Popen(" ".join(cmd), stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
   commits = proc.communicate()[0].decode("utf-8").split()[1:]
 
   # Write release to file to preview
@@ -81,7 +81,7 @@ def createRelease(tag):
 
   # Publish the release
   # cmd = ["gh", "release", "create", tag, "-F", fileName, "-t", "{0} {1} Release".format(currentVer, releaseType)]
-  # proc = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
+  # proc = subprocess.Popen(" ".join(cmd), stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
   # proc.wait()
 
 ## Validate arguments
