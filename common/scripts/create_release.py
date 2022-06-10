@@ -71,18 +71,20 @@ def createRelease(tag):
 
   f = open(fileName, "w")
   f.write("# Release notes\n\n")
-  if releaseType != "Patch":
-    f.write("For detailed list of changes see the [detailed change notes.](./docs/changehistory/{0}.md)\n\n".format(currentVer))
-  f.write("## Changes\n\n")
-  for commit in commits[::-1]:
-    f.write("- {0}\n".format(getCommitMessage(commit)))
-  f.write("\n**Full changelog:** [{0}...{1}](https://github.com/iTwin/itwinjs-core/compare/{2}...{3})\n".format(previousVer, currentVer, previousTag, tag))
+  if releaseType == "Patch":
+    f.write("## Changes\n\n")
+    for commit in commits[::-1]:
+      f.write("- {0}\n".format(getCommitMessage(commit)))
+    f.write("\n")
+  else:
+    f. write("For detailed list of changes see the [detailed change notes.](./docs/changehistory/{0}.md)\n\n".format(currentVer))
+  f.write("**Full changelog:** [{0}...{1}](https://github.com/iTwin/itwinjs-core/compare/{2}...{3})\n".format(previousVer, currentVer, previousTag, tag))
   f.close()
 
   # Publish the release
-  # cmd = ["gh", "release", "create", tag, "-F", fileName, "-t", "{0} {1} Release".format(currentVer, releaseType)]
-  # proc = subprocess.Popen(" ".join(cmd), stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
-  # proc.wait()
+  cmd = ["gh", "release", "create", tag, "-F", fileName, "-t", "{0} {1} Release".format(currentVer, releaseType)]
+  proc = subprocess.Popen(" ".join(cmd), stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
+  proc.wait()
 
 ## Validate arguments
 if len(sys.argv) != 2:
@@ -91,13 +93,4 @@ if len(sys.argv) != 2:
 releaseTag = sys.argv[1]
 
 print("Creating release for " + releaseTag)
-
 createRelease(releaseTag)
-
-# createRelease("release/3.2.0", "release/3.2.1")
-# createRelease("release/3.2.1")
-# createRelease("release/3.0.1")
-# createRelease("release/3.2.0")
-# createRelease("release/3.0.0")
-
-# getCommitInfo("640a0436b5272253d1ad03ade8d845a898205c12")
