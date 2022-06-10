@@ -7,7 +7,7 @@ on:
     inputs:
       tag:
         description: 'Name of tag for release'
-        default: ''
+        default: 'release/3.2.1'
         required: true
 
 jobs:

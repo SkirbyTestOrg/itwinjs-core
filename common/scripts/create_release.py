@@ -80,9 +80,9 @@ def createRelease(tag):
   f.close()
 
   # Publish the release
-  cmd = ["gh", "release", "create", tag, "-F", fileName, "-t", "{0} {1} Release".format(currentVer, releaseType)]
-  proc = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
-  proc.wait()
+  # cmd = ["gh", "release", "create", tag, "-F", fileName, "-t", "{0} {1} Release".format(currentVer, releaseType)]
+  # proc = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
+  # proc.wait()
 
 ## Validate arguments
 if len(sys.argv) != 2:
