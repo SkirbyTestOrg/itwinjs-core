@@ -52,6 +52,7 @@ def createRelease(tag):
   if (len(previousTag) == 0):
     print("Could not find previous tag for " + tag)
 
+  print("Previous tag is " + previousTag)
   previousVer = previousTag.split("/")[1]
 
   # Get SHAs for both tags
