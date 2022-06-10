@@ -1135,7 +1135,8 @@ export function isHorizontalPanelState(state: PanelState): state is HorizontalPa
   return isHorizontalPanelSide(state.side);
 }
 
-function isTabTargetState(state: DropTargetState): state is TabTargetState {
+/** @internal */
+export function isTabTargetState(state: DropTargetState): state is TabTargetState {
   return state.type === "tab";
 }
 
