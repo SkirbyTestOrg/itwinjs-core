@@ -82,9 +82,10 @@ def createRelease(tag):
   f.close()
 
   # Publish the release
+  print("Creating GitHub release...")
   cmd = ["gh", "release", "create", tag, "-F", fileName, "-t", "{0} {1} Release".format(currentVer, releaseType)]
   proc = subprocess.Popen(" ".join(cmd), stdin = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)
-  proc.wait()
+  print(proc.communicate()[0].decode("utf-8").strip())
 
 ## Validate arguments
 if len(sys.argv) != 2:
