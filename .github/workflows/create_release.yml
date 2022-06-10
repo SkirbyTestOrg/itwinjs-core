@@ -15,5 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Create release
-      run: python ./common/scripts/create-release.py ${{ github.event.inputs.tag }}
+    - name: gh cli test
+      run: gh pr list
+
+    # - name: Checkout branch
+    #   uses: actions/checkout@v2
+
+    # - name: Create release
+    #   run: python ./common/scripts/create-release.py ${{ github.event.inputs.tag }}
