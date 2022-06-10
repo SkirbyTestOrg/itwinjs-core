@@ -19,6 +19,6 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Create release
-      run: python ./common/scripts/create-release.py ${{ github.event.inputs.tag }}
+      run: python common/scripts/create_release.py ${{ github.event.inputs.tag }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
