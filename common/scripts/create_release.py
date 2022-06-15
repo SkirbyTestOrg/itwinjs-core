@@ -88,11 +88,5 @@ if len(sys.argv) != 2:
   sys.exit("Invalid number of arguments to script provided.\nExpected: 1\nReceived: {0}".format(len(sys.argv) - 1))
 
 releaseTag = sys.argv[1]
-
 print("Creating release for " + releaseTag)
-# createRelease(releaseTag)
-createRelease("release/3.0.0")
-createRelease("release/3.0.1")
-createRelease("release/3.1.0")
-createRelease("release/3.2.1")
-# Strip first of two PR links
+createRelease(releaseTag)
