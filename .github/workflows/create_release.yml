@@ -1,15 +1,11 @@
-# This is a basic workflow that is manually triggered
+# This should trigger when a tag with the release/* pattern is pushed
 
 name: Manual release workflow
 
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Name of tag for release'
-        default: 'release/3.2.1'
-        required: true
-
+  push:
+    tags:
+      - 'release/*'
 jobs:
   create-release:
     runs-on: ubuntu-latest
@@ -20,12 +16,16 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Configure git
-      run: |
-        git config --local user.email imodeljs-admin@users.noreply.github.com
-        git config --local user.name imodeljs-admin
+    # - name: Configure git
+    #   run: |
+    #     git config --local user.email imodeljs-admin@users.noreply.github.com
+    #     git config --local user.name imodeljs-admin
 
-    - name: Create release
-      run: python common/scripts/create_release.py ${{ github.event.inputs.tag }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Create release
+    #   run: python common/scripts/create_release.py ${{ github.event.inputs.tag }}
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Check tag name
+      run: |
+        echo ${{ github.ref_name }}
