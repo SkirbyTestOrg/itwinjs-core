@@ -1,0 +1,15 @@
+# Workflow that will create a GitHub release a when a new release tag is pushed
+
+name: Create Release
+
+on:
+  push:
+    tags:
+      - release/*
+jobs:
+  double-quote-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hello!
+        run: echo Triggered
